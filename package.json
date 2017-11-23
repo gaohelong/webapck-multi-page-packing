@@ -4,7 +4,7 @@
   "description": "``` English:  https://webpack.js.org Chinease: https://doc.webpack-china.org",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rm -rf dist",
     "build-prod": "npm run clean && webpack --config build/webpack.prod.config.js --progress --colors",
     "build-dev": "npm run clean && webpack --config build/webpack.dev.config.js --env=dev --progress --colors",
     "dev-server-start": "webpack-dev-server --config build/webpack.dev.config.js --env=dev-server --progress --colors",
@@ -43,16 +43,16 @@
     "imports-loader": "^0.7.1",
     "jsx-loader": "^0.13.2",
     "mockjs": "^1.0.1-beta3",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.6",
     "resolve-url-loader": "^2.0.2",
-    "node-sass": "^4.5.3",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.18.2",
     "svg-url-loader": "^2.0.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "webpack-merge": "^4.1.1"
   }
 }

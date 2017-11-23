@@ -1,8 +1,9 @@
 /* require */
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+// var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
-
+const pages = require('./pages');
+// var merge = require('webpack-merge');
 const paths = require('./paths');
 
 /* 将css提取成单独文件 */
@@ -33,6 +34,25 @@ var definePluginConfig = new webpack.DefinePlugin({
     '__PROD__': JSON.stringify('dev')
 });
 
+/* plugins */
+var plugins = [
+    // source map(方便排查、定位javascript问题)
+    new webpack.SourceMapDevToolPlugin({
+        filename: 'map/[name].js.map', // 输出到map目录下
+        exclude: ['vendor.js'] // 排除vendor.js
+    }),
+
+    // DefinePlugin 允许创建一个在编译时可以配置的全局常量。这可能会对开发模式和发布模式的构建允许不同的行为非常有用。
+    definePluginConfig,
+
+    // 提取成单独的css文件.
+    // extractGlobalSass,
+    extractSass,
+    extractCss
+];
+plugins = plugins.concat(pages);
+
+/* exports */
 module.exports = function(env) {
     // publicPath
     // var publicPath = (env == 'dev') ? 'http://react.noah.com/' : 'http://localhost:8001/';
@@ -201,26 +221,6 @@ module.exports = function(env) {
         },
 
         /* 插件配置 */
-        plugins: [
-            // source map(方便排查、定位javascript问题)
-            new webpack.SourceMapDevToolPlugin({
-                filename: 'map/[name].js.map', // 输出到map目录下
-                exclude: ['vendor.js'] // 排除vendor.js
-            }),
-
-            // DefinePlugin 允许创建一个在编译时可以配置的全局常量。这可能会对开发模式和发布模式的构建允许不同的行为非常有用。
-            definePluginConfig,
-
-            // 提取成单独的css文件.
-            // extractGlobalSass,
-            extractSass,
-            extractCss,
-
-            // 生成html.
-            new HtmlWebpackPlugin({
-                title: 'system',
-                template: './src/tpl/index.html',
-            }),
-        ]
+        plugins: plugins
     }
 };
