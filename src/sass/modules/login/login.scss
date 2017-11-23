@@ -1,0 +1,43 @@
+@charset    "utf-8";
+@import     "../core";
+
+/* noah-login */
+.#{$prefix}-login {
+    .main {
+        position:           absolute;
+        top:                0;
+        width:              100%;
+        height:             calc(100% - 130px);
+        padding-top:        130px;
+
+        .logo {
+            text-align:             center;
+            line-height:            60px;
+            font-size:              30px;
+            color:                  $blue;
+        }
+
+        .info {
+            position:               relative;
+            top:                    30px;
+            left:                   50%;
+            width:                  300px;
+            text-align:             center;
+            @include                translateX(-50%);
+        }
+
+        .#{$prefix}-btn-base {
+            margin-top:             40px;
+        }
+    }
+
+    .footer {
+        position:               absolute;
+        bottom:                 0;
+        width:                  100%;
+        border-top:             1px solid #ccc;
+        line-height:            60px;
+        text-align:             center;
+        background-color:       #f5f5f5;
+    }
+}

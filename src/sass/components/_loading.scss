@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+/* noah-loading */
+.#{$prefix}-fullScreenLoading,
+.#{$prefix}-fullScreenLoadingFadeout,
+.#{$prefix}-logoutFullScreenLoadingFadeout {
+    position:           absolute;
+    top:                0;
+    right:              0;
+    bottom:             0;
+    left:               0;
+    z-index:            999;
+    text-align:         center;
+    background-color:   rgba(239, 239, 239, 1);
+
+    .#{$prefix}-loadingCenter {
+        position:           absolute;
+        top:                40%;
+    }
+}
+
+.#{$prefix}-fullScreenLoadingFadeout {
+    @include animation(loadingFadeout 0.7s ease 1.3s forwards);
+}
+
+@include keyframes(loadingFadeout) {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.#{$prefix}-logoutFullScreenLoadingFadeout {
+    @include animation(logoutLoadingFadeout 0.7s ease 600s forwards);
+}
+
+@include keyframes(logoutLoadingFadeout) {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+// 操作loading.
+.#{$prefix}-operation-loading {
+    position:           absolute;
+    z-index:            9997;
+    top:                0;
+    bottom:             0;
+    left:               0;
+    right:              0;
+    text-align:         center;
+    background-color:   rgba(255, 255, 255, 0.15);
+
+    .#{$prefix}-loadingCenter {
+        position:           absolute;
+        top:                40%;
+    }
+}
