@@ -3,7 +3,6 @@ require('../sass/main.scss');
 require('../sass/modules/login/login.scss');
 
 /* import */
-import _ from 'lodash'; // loadsh.
 import $ from 'jquery'; // externals jquery.
 
 /* require */
@@ -25,7 +24,7 @@ let indexObj = {
         });
     },
     init: () => {
-        $('body').prepend(loginHtml());
+        $('body').prepend(loginHtml);
         indexObj.login();
     }
 };

@@ -1,7 +1,7 @@
 import config from '../config/index';
 
+let sysPre = config.prefixs.system;
 let html = () => {
-    let sysPre = config.prefixs.system;
     let userCls = sysPre + 'input-base';
     let pwdCls = sysPre + 'input-base';
     let loginBtnCls = sysPre + 'btn-base js-login';
@@ -20,4 +20,4 @@ let html = () => {
     );
 };
 
-export default html;
+export default html();

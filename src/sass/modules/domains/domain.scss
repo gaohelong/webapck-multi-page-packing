@@ -1,0 +1,8 @@
+@charset "utf-8";
+@import "../core";
+
+/* shelf-domains */
+.#{$prefix}-domain {
+    font-size: 16px;
+    color: green;
+}

@@ -62,6 +62,7 @@ module.exports = function(env) {
         /* entry */
         entry: {
             main: ['./src/views/index'],
+            domains: ['./src/views/domains/domain']
         },
 
         /* 输出 */
