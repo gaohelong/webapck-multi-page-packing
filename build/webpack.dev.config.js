@@ -61,7 +61,7 @@ module.exports = function(env) {
     return {
         /* entry */
         entry: {
-            main: ['./src/main.js'],
+            main: ['./src/views/index'],
         },
 
         /* 输出 */
