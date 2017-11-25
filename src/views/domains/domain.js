@@ -12,6 +12,10 @@ require('SassModules/domains/domain');
 import domainsTpl from 'Tpl/domains/domain';
 import Config from 'Configs/index'; // 使用别名调用配置文件.
 // console.log(Config);
+// import * as Tool from 'Tools/tools';
+// console.log(Tool);
+import { tplManySpaceProc } from 'Tools/tools';
+// console.log(tplManySpaceProc);
 
 /* require */
 // const Config = require('../../config/index');
@@ -33,6 +37,7 @@ let domainsObj = {
     },
     insertDom: (data) => {
         let html = domainsTpl(data);
+        html = tplManySpaceProc(html);
         $('body').prepend(html);
     }
 };

@@ -14,6 +14,7 @@ import $ from 'jquery'; // externals jquery.
 // import html from '../test/import';
 import loginTpl from 'Tpl/index'; // 使用别名调用模版.
 import Config from 'Configs/index'; // 使用别名调用配置文件.
+import { tplManySpaceProc } from 'Tools/tools';
 
 /* init */
 let indexObj = {
@@ -27,7 +28,8 @@ let indexObj = {
         });
     },
     init: () => {
-        $('body').prepend(loginTpl);
+        let html = tplManySpaceProc(loginTpl);
+        $('body').prepend(html);
         indexObj.login();
     }
 };

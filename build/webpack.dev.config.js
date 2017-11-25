@@ -99,7 +99,8 @@ module.exports = function(env) {
                 Configs: path.resolve(__dirname, '../src/config'),
                 Sass: path.resolve(__dirname, '../src/sass'),
                 SassModules: path.resolve(__dirname, '../src/sass/modules'),
-                Tpl: path.resolve(__dirname, '../src/tpl')
+                Tpl: path.resolve(__dirname, '../src/tpl'),
+                Tools: path.resolve(__dirname, '../src/tools')
             }
         },
 
