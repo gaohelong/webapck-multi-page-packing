@@ -6,6 +6,9 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var path = require('path');
 const paths = require('./paths');
 
+// pages.
+const pages = require('./pages');
+
 // DefinePlugin 允许创建一个在编译时可以配置的全局常量。这可能会对开发模式和发布模式的构建允许不同的行为非常有用。
 var definePluginConfig = new webpack.DefinePlugin({
     'process.env': {
@@ -27,14 +30,51 @@ const extractCss = new ExtractTextPlugin({
     // disable: process.env.NODE_ENV === "development" // true: 禁用，这是css在当前页面的<style></style>中. 如果为false: 启用，则单独生成css文件. 默认为false.
 });
 
+/* plugins */
+var plugins = [
+    // source map(方便排查、定位javascript问题)
+    new webpack.SourceMapDevToolPlugin({
+        filename: 'map/[name].js.map', // 输出到map目录下
+        exclude: ['vendor.js'] // 排除vendor.js
+    }),
+
+    // DefinePlugin.
+    definePluginConfig,
+
+    // js压缩.
+    new UglifyJSPlugin({
+        compress: {
+            warnings: false,
+            // drop_console: true
+        },
+        output: {
+            comments: false
+        },
+    }),
+
+    // 提取成单独的css文件.
+    extractSass,
+    extractCss,
+
+    // 公共文件提取.
+    new webpack.optimize.CommonsChunkPlugin({
+        name: ['vendor', 'manifest']
+    })
+];
+plugins = plugins.concat(pages);
+
+/* entry */
+const entry = {
+    main: ['./src/views/index'],
+    domains: ['./src/views/domains/domain']
+    // vendor: [
+    //     'react'
+    // ]
+};
+
 module.exports = { 
     /* entry */
-    entry: {
-        main: ['./src/main.js'],
-        // vendor: [
-        //     'react'
-        // ]
-    },
+    entry: entry,
 
     /* output */
     output: {
@@ -52,7 +92,15 @@ module.exports = {
     /* 设置模块如何解析 */
     resolve:  { 
         /* 自动解析确定的扩展。默认值为：extensions: [".js", ".json"] */
-        extensions: [".js", ".jsx", ".json", ".scss", ".css"] // 在js中不用写前面所列出的文件后缀, 例如：1.scss就可以去掉.scss了.
+        extensions: [".js", ".jsx", ".json", ".scss", ".css"], // 在js中不用写前面所列出的文件后缀, 例如：1.scss就可以去掉.scss了.
+
+        /* 模块别名地址,方便后续直接引用别名，无须写长长的地址，注意如果后续不能识别该别名,需要先设置root. */
+        alias: {
+            Configs: path.resolve(__dirname, '../src/config'),
+            Sass: path.resolve(__dirname, '../src/sass'),
+            SassModules: path.resolve(__dirname, '../src/sass/modules'),
+            Tpl: path.resolve(__dirname, '../src/tpl')
+        }
     },
 
     /* 外部扩展(防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(external dependencies)。) */
@@ -161,40 +209,5 @@ module.exports = {
     },
 
     /* 插件配置 */
-    plugins: [
-        // source map(方便排查、定位javascript问题)
-        new webpack.SourceMapDevToolPlugin({
-            filename: 'map/[name].js.map', // 输出到map目录下
-            exclude: ['vendor.js'] // 排除vendor.js
-        }),
-
-        // DefinePlugin.
-        definePluginConfig,
-
-        // js压缩.
-        new UglifyJSPlugin({
-            compress: {
-                warnings: false,
-                // drop_console: true
-            },
-            output: {
-                comments: false
-            },
-        }),
-
-        // 提取成单独的css文件.
-        extractSass,
-        extractCss,
-
-        // 生成html.
-        new HtmlWebpackPlugin({
-            title: 'system',
-            template: './src/tpl/index.html',
-        }),
-
-        // 公共文件提取.
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor', 'manifest']
-        }),
-    ]
+    plugins: plugins
 };

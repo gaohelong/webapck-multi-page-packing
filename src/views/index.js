@@ -1,18 +1,19 @@
 /* sass */
-require('../sass/main.scss');
-require('../sass/modules/login/login.scss');
+require('Sass/main'); // 使用别名调用样式.
+require('SassModules/login/login'); // 使用别名调用样式.
 
 /* import */
 import $ from 'jquery'; // externals jquery.
 
 /* require */
 // const html = require('../test/require');
-// const html = require('../contentTpl/index'); // html content.
-const config = require('../config/index');
+// const html = require('../tpl/index'); // html content.
+// const config = require('../config/index');
 
 /* import */
 // import html from '../test/import';
-import loginHtml from '../contentTpl/index';
+import loginTpl from 'Tpl/index'; // 使用别名调用模版.
+import Config from 'Configs/index'; // 使用别名调用配置文件.
 
 /* init */
 let indexObj = {
@@ -21,10 +22,12 @@ let indexObj = {
             let inputs = $('.shelf-login').find('input');
             console.log(inputs.eq(0).val());
             console.log(inputs.eq(1).val());
+            // debugger;
+            window.location.href = './domains.html';
         });
     },
     init: () => {
-        $('body').prepend(loginHtml);
+        $('body').prepend(loginTpl);
         indexObj.login();
     }
 };

@@ -52,6 +52,13 @@ var plugins = [
 ];
 plugins = plugins.concat(pages);
 
+
+/* entry */
+const entry = {
+    main: ['./src/views/index'],
+    domains: ['./src/views/domains/domain']
+};
+
 /* exports */
 module.exports = function(env) {
     // publicPath
@@ -60,10 +67,7 @@ module.exports = function(env) {
     /* return */
     return {
         /* entry */
-        entry: {
-            main: ['./src/views/index'],
-            domains: ['./src/views/domains/domain']
-        },
+        entry: entry,
 
         /* 输出 */
         output: {
@@ -88,7 +92,15 @@ module.exports = function(env) {
         /* 设置模块如何解析 */
         resolve:  {
             /* 自动解析确定的扩展。默认值为：extensions: [".js", ".json"] */
-            extensions: [".js", ".jsx", ".json", ".scss", ".css"] // 在js中不用写前面所列出的文件后缀, 例如：1.scss就可以去掉.scss了.
+            extensions: [".js", ".jsx", ".json", ".scss", ".css"], // 在js中不用写前面所列出的文件后缀, 例如：1.scss就可以去掉.scss了.
+
+            /* 模块别名地址,方便后续直接引用别名，无须写长长的地址，注意如果后续不能识别该别名,需要先设置root. */
+            alias: {
+                Configs: path.resolve(__dirname, '../src/config'),
+                Sass: path.resolve(__dirname, '../src/sass'),
+                SassModules: path.resolve(__dirname, '../src/sass/modules'),
+                Tpl: path.resolve(__dirname, '../src/tpl')
+            }
         },
 
         /* 外部扩展(防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(external dependencies)。) */

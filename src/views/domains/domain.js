@@ -1,20 +1,39 @@
+/**
+ * @ 模版用到的所有数据.
+ * @ 模版添加到页面.
+ * @ 模版添加到页面后的处理.
+ */
+
 /* sass */
-require('../../sass/main');
-require('../../sass/modules/domains/domain');
+require('Sass/main');
+require('SassModules/domains/domain');
 
 /* import */
-import domainsHtml from '../../contentTpl/domains/domain';
+import domainsTpl from 'Tpl/domains/domain';
+import Config from 'Configs/index'; // 使用别名调用配置文件.
+// console.log(Config);
 
 /* require */
-const config = require('../../config/index');
-
-/* content */
-let content = domainsHtml;
+// const Config = require('../../config/index');
 
 /* init */
 let domainsObj = {
     init: () => {
-        $('body').prepend(content);
+        /* ajax请求初始数据 */
+        let data = {
+            title: '我是domain',
+            nav: ['域名管理', '用户管理'],
+            userinfo: {
+                id: 1,
+                name: 'china@cloud.com'
+            }
+        };
+
+        domainsObj.insertDom(data);
+    },
+    insertDom: (data) => {
+        let html = domainsTpl(data);
+        $('body').prepend(html);
     }
 };
 

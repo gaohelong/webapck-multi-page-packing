@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+/* nav */
+.#{$prefix}-nav {
+    position:           absolute;
+    top:                0;
+    bottom:             0;
+    width:              150px;
+    background-color:   #f5f5db;
+}

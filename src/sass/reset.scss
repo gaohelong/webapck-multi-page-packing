@@ -1,0 +1,21 @@
+@charset "utf-8";
+@import "modules/core";
+
+.#{$prefix}-main {
+    position:           absolute;
+    top:                60px;
+    right:              0;
+    bottom:             0;
+    left:               0;
+    min-height:         800px;
+    background-color:   #eee;
+}
+
+.#{$prefix}-content {
+    position:           absolute;
+    top:                0;
+    right:              0;
+    bottom:             60px;
+    left:               150px;
+    background-color:   #808080;
+}

@@ -1,7 +1,7 @@
 var path = require('path');
 var ROOT_PATH = path.resolve(__dirname, '../');
-var WWW_URL = 'http://hl.sys.com/';
-var DEV_WWW_URL = 'http://localhost:8001/';
+var WWW_URL = 'http://hl.webpack-multi-page-packing.com';
+var DEV_WWW_URL = 'http://localhost:8001';
 
 module.exports = {
     WWW_URL: WWW_URL,

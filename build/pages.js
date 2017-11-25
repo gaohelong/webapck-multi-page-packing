@@ -4,13 +4,13 @@ var excludes = ['main', 'domains'];
 var items = [
     {
         title: '登录入口',
-        url: './src/tpl/index.html',
+        url: './src/html/index.html',
         filename: 'index.html',
         modulename: 'main'
     },
     {
         title: '域名管理',
-        url: './src/tpl/domains/domains.html',
+        url: './src/html/domains/domains.html',
         filename: 'domains.html',
         modulename: 'domains'
     }
